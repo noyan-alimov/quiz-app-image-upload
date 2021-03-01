@@ -18,7 +18,7 @@ export const s3 = new AWS.S3({
  *    a url as a string
  */
 export const getGetSignedUrl = (key: string): string => {
-	const signedUrlExpireSeconds = 60 * 5;
+	const signedUrlExpireSeconds = 60 * 60 * 24 * 5; // 5 days
 
 	const url = s3.getSignedUrl('getObject', {
 		Bucket: config.AWS_MEDIA_BUCKET,
@@ -36,7 +36,7 @@ export const getGetSignedUrl = (key: string): string => {
  *    a url as a string
  */
 export const getPutSignedUrl = (key: string) => {
-	const signedUrlExpireSeconds = 60 * 5;
+	const signedUrlExpireSeconds = 60 * 5; // 5 minutes
 
 	const url = s3.getSignedUrl('putObject', {
 		Bucket: config.AWS_MEDIA_BUCKET,
