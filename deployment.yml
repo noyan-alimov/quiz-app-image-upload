@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quiz-app-image-upload
+  labels:
+    app: quiz-app-image-upload
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: quiz-app-image-upload
+  template:
+    metadata:
+      labels:
+        app: quiz-app-image-upload
+    spec:
+      containers:
+        - name: quiz-app-image-upload
+          image: noyan09/quiz-app-image-upload
+          ports:
+            - containerPort: 8080
+          env:
+            - name: AWS_MEDIA_BUCKET
+              valueFrom:
+                configMapKeyRef:
+                  name: env-config
+                  key: AWS_MEDIA_BUCKET
+          volumeMounts:
+            - name: aws-secret
+              mountPath: '/root/.aws/'
+              readOnly: true
+      restartPolicy: Always
+      volumes:
+        - name: aws-secret
+          secret:
+            secretName: aws-secret
