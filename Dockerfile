@@ -10,4 +10,4 @@ COPY dist .
 
 EXPOSE 8080
 
-CMD [ "npm", "run", "server" ]
+CMD [ "node", "index.js" ]

@@ -6,7 +6,8 @@
 	"scripts": {
 		"build": "tsc",
 		"server": "node dist/index.js",
-		"start": "npm run build && npm run server"
+		"start": "npm run build && npm run server",
+		"start:prod": "node index.js"
 	},
 	"keywords": [],
 	"author": "",
