@@ -4,10 +4,11 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 
+RUN npm i -g typescript
 RUN npm i
 
-COPY dist .
+COPY . .
 
 EXPOSE 8080
 
-CMD [ "node", "index.js" ]
+CMD [ "npm", "start" ]
